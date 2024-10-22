@@ -49,18 +49,53 @@ console.log('Hello word form AA')
 //     }
 // }    
 
-let sum = (a, b) => {
-    return a + b;
+// let sum = (a, b) => {
+//     return a + b;
+// }
+
+// console.log('check sum: 9 + 6 =', sum(9, 6))
+
+// let obj = {
+//     name: 'Quang',
+//     address: 'TB',
+//     getName: function () {
+//         return this.name;
+//     }
+// }
+
+// console.log('>>> get name obj: ', obj.getName())
+
+//No23
+// let sum = (a, b, callback) => {
+
+//     let tong = a + b;
+//     callback(tong)
+// }
+
+
+// let printsum = (message) => {
+//     console.log('>> check sum; 6 + 9 =', message)
+// }
+// sum(6, 9, printsum)
+
+// let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+//No26
+// let arr = [
+//     { name: 'eric', age: 35 },
+//     { name: '123', age: 55 },
+//     { name: '456', age: 25 },
+//     { name: '789', age: 25 },
+// ]
+
+// //filter, find
+
+// let filter = arr.find((item, index) => {
+//     console.log('check filter: item:', item, 'index:', index)
+//     return item && item.age === 25;
+// }); console.log(filter)
+
+let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+for (let i = 0; i < arr.length; i++) {
+    console.log('check value i:', arr[i])
 }
-
-console.log('check sum: 9 + 6 =', sum(9, 6))
-
-let obj = {
-    name: 'Quang',
-    address: 'TB',
-    getName: function () {
-        return this.name;
-    }
-}
-
-console.log('>>> get name obj: ', obj.getName())
