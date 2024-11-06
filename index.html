@@ -17,29 +17,55 @@
     }
 
     function getTodos(id, callback) {
-        var request = new XMLHttpRequest();
-        request.onreadystatechange = function () {
-            if (this.readyState === 4 && this.status === 200) {
-                // Typical action to be performed when the document is ready:
-                const data = JSON.parse(request.responseText);
-                const datastring = JSON.stringify(data)
-                callback(undefined, data);
-                callback(undefined, datastring);
-                callback(undefined, request.responseText)
-            }
+        return new Promise((resolve, reject) => {
+            var request = new XMLHttpRequest();
+            request.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    // Typical action to be performed when the document is ready:
+                    const data = JSON.parse(request.responseText);
+                    const datastring = JSON.stringify(data)
+                    // callback(undefined, data);
+                    // callback(undefined, datastring);
+                    // callback(undefined, request.responseText)
+                    resolve(data)
+                }
 
-            if (this.readyState === 4 && this.status !== 200) {
-                callback('something wrongs', undefined);
-            }
-        };
-        request.open("GET", `https://jsonplaceholder.typicode.com/todos/${id}`, true);
-        request.send();
+                if (this.readyState === 4 && this.status !== 200) {
+                    // callback('something wrongs', undefined);
+                    reject('something wrongs')
+                }
+            };
+            request.open("GET", `https://jsonplaceholder.typicode.com/todos/${id}`, true);
+            request.send();
+        })
+
     }
 
-    getTodos(1, callback);
-    getTodos(2, callback);
+    getTodos(1).then(data => {
+        console.log('>> get data:', data)
+        getTodos(2).then(data => {
+            console.log('>> get data:', data)
+        })
+    }).catch(error => {
+        console.log('something wrongs')
+    })
 
 
+    //promise exsample
+
+    // const promiseExp = () => {
+    //     return new Promise((resolve, reject) => {
+    //         resolve('get some data')
+    //         reject('something wrong')
+    //     });
+    // }
+    // promiseExp()
+    //     .then(data => {
+    //         console.log(data)
+    //     })
+    //     .catch(error => {
+    //         console.log(error)
+    //     });
 
 
 
