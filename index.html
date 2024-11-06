@@ -41,14 +41,33 @@
 
     }
 
-    getTodos(1).then(data => {
-        console.log('>> get data:', data)
-        getTodos(2).then(data => {
-            console.log('>> get data:', data)
-        })
-    }).catch(error => {
-        console.log('something wrongs')
+    getTodos(1).then(data1 => {
+        console.log('>> get data:', data1);
+
+        return getTodos(2);
+    }).then(data2 => {
+        console.log('>> get data2', data2);
+        return getTodos(3);
+    }).then(data3 => {
+        console.log('>> get data3', data3);
     })
+        .catch(error => {
+            console.log('something wrongs', error)
+        })
+
+
+
+
+
+
+    // getTodos(1).then(data => {
+    //     console.log('>> get data:', data)
+    //     getTodos(2).then(data => {
+    //         console.log('>> get data:', data)
+    //     })
+    // }).catch(error => {
+    //     console.log('something wrongs', error)
+    // })
 
 
     //promise exsample
