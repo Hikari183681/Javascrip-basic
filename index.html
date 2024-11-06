@@ -5,7 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quang Anh </title>
 </head>
-<script src="./video2/video2.js">
+<script>
+    const callback = (error, data) => {
+        if (error) {
+            console.log('calling callback', error)
+        }
+        if (data) {
+            console.log('calling callback with data', data)
+        }
+
+    }
+
+    function getTodos(id, callback) {
+        var request = new XMLHttpRequest();
+        request.onreadystatechange = function () {
+            if (this.readyState === 4 && this.status === 200) {
+                // Typical action to be performed when the document is ready:
+                const data = JSON.parse(request.responseText);
+                const datastring = JSON.stringify(data)
+                callback(undefined, data);
+                callback(undefined, datastring);
+                callback(undefined, request.responseText)
+            }
+
+            if (this.readyState === 4 && this.status !== 200) {
+                callback('something wrongs', undefined);
+            }
+        };
+        request.open("GET", `https://jsonplaceholder.typicode.com/todos/${id}`, true);
+        request.send();
+    }
+
+    getTodos(1, callback);
+    getTodos(2, callback);
+
+
+
+
 
 </script>
 
