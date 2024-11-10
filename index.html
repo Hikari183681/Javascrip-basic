@@ -41,19 +41,42 @@
 
     }
 
-    getTodos(1).then(data1 => {
-        console.log('>> get data:', data1);
+    const getNewTodo = async (id) => {
+        let response = await fetch(`https://jsonplaceholder.typicode.com/todos/${id}`);
+        let data = await response.json();
+        return data;
+    }
 
-        return getTodos(2);
-    }).then(data2 => {
-        console.log('>> get data2', data2);
-        return getTodos(3);
-    }).then(data3 => {
-        console.log('>> get data3', data3);
+    getNewTodo(2).then(data => {
+        console.log('>> check get data', data)
     })
-        .catch(error => {
-            console.log('something wrongs', error)
-        })
+
+
+
+    // fetch('https://jsonplaceholder.typicode.com/todos/1')
+    //     .then(Response => {
+    //         return Response.json()
+    //     })
+    //     .then(data => {
+    //         console.log('>> check fetch data', data)
+    //     })
+
+
+
+
+    // getTodos(1).then(data1 => {
+    //     console.log('>> get data:', data1);
+
+    //     return getTodos(2);
+    // }).then(data2 => {
+    //     console.log('>> get data2', data2);
+    //     return getTodos(3);
+    // }).then(data3 => {
+    //     console.log('>> get data3', data3);
+    // })
+    //     .catch(error => {
+    //         console.log('something wrongs', error)
+    //     })
 
 
 
